@@ -31,11 +31,31 @@ class UserController extends Controller
             'password' => Hash::make('12345')
         ];
         UserModel::create($data);
+
+
+        $data = UserModel::where('level_id', 2)->get();
+        return view('user', ['data' => $data]);
+
+        $user = UserModel::firstOrCreate(
+            [
+                'username' => 'manager',
+                'nama' => 'Manager',
+            ]
+        );
+        return view('user', ['data' => $user]);
         */
 
-        $user = UserModel::where('username', 'manager9')->firstOrFail();
+        $user = UserModel::firstOrNew(
+            [
+                'username' => 'manager33',
+                'nama' => 'Manager Tiga Tiga',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
+            ],
+        );
+        $user->save();
 
-        return view('user', ['data' =>$user]);
+        return view('user', ['data' => $user]);
     }
 
 }
