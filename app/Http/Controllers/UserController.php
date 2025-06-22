@@ -102,7 +102,7 @@ class UserController extends Controller
         $user->wasChanged('nama'); //false
         dd($user->wasChanged(['nama','username']));
         */
-
+        /*
         $user = UserModel::all();
         return view('user', ['data' => $user]);
 
@@ -147,7 +147,11 @@ class UserController extends Controller
             
             return redirect('/user');
         }
-        
-        $user = UserModel::with('level_id')->get();
-        dd $user;
+        */
+
+        $user = UserModel::with('level')->get();
+        return view('user', ['data' => $user]);
+    }
+
+
 }
