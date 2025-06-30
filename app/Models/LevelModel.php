@@ -36,6 +36,7 @@ class LevelModel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'level_id',
         'level_kode',
         'level_nama',
     ];

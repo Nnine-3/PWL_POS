@@ -20,6 +20,6 @@ class KategoriSeeder extends Seeder
             ['kategori_kode' => 'KTG004', 'kategori_nama' => 'Elektronik'],
             ['kategori_kode' => 'KTG005', 'kategori_nama' => 'Perawatan Diri'],
         ];
-        DB::table('kategori')->insert($data);
+        DB::table('m_kategori')->insert($data);
     }
 }
