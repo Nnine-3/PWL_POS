@@ -9,18 +9,7 @@ class KategoriModel extends Model
 {
     use HasFactory;
 
-    /**
-     * Nama tabel yang terhubung dengan model.
-     *
-     * @var string
-     */
     protected $table = 'm_kategori';
-
-    /**
-     * Primary key yang digunakan oleh tabel.
-     *
-     * @var string
-     */
     protected $primaryKey = 'kategori_id';
 
     /**
