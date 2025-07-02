@@ -3,70 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ config('app.name') }} | PM Laravel Starter Code</title>
+  <title>{{ config('app.name', 'PWL Starter Code') }} | PM Laravel Starter Code</title>
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Untuk mengirimkan token Laravel CSRF pada setiap request ajax -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
 
-  <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
-  <!-- AdminLTE style -->
+  {{-- PERBAIKAN: Path ke SweetAlert2 disamakan dengan plugin lainnya --}}
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
-  @stack('css') <!-- Digunakan untuk memanggil custom css dari perintah push('css') pada masing-masing view -->
-</head>
+  @stack('css') </head>
 
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
 <div class="wrapper">
-  <!-- Navbar -->
-    @include('layouts.header')
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
+  @include('layouts.header')
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{url('/') }}" class="brand-link">
-      <img src="{{asset('adminLte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('/') }}" class="brand-link">
+      <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">PWL - Starter Code</span>
     </a>
 
-    <!-- Sidebar -->
     @include('layouts.sidebar')
-    <!-- /.sidebar -->
-  </aside>
+    </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     @include('layouts.breadcrumb')
 
-    <!-- Main content -->
     <section class="content">
         @yield('content')
     </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-    @include('layouts.footer')
-  <!-- ./wrapper -->
-
-<!-- jQuery -->
+    </div>
+  @include('layouts.footer')
+</div>
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-
-<!-- Bootstrap -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- DataTables JS -->
 <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -80,10 +58,15 @@
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-<!-- AdminLTE App -->
+{{-- PERBAIKAN: Path ke SweetAlert2 JS disamakan --}}
+<script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+{{-- PERBAIKAN: Path ke jQuery Validation JS disamakan --}}
+<script src="{{ asset('adminlte/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/jquery-validation/additional-methods.min.js') }}"></script>
+
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 
-<!-- CSRF Token Ajax Setup -->
 <script>
   $.ajaxSetup({
     headers: {
@@ -92,6 +75,5 @@
   });
 </script>
 
-@stack('js') <!-- Digunakan untuk memanggil custom js dari perintah push('js') pada masing-masing view -->
-</body>
+@stack('js') </body>
 </html>
