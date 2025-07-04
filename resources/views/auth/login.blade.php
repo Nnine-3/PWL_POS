@@ -50,6 +50,9 @@
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
+          <p class="mb-0">
+            <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+          </p>
           </div>
       </form>
     </div>
