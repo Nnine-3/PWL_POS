@@ -44,24 +44,30 @@ class LevelController extends Controller
     // Ambil data level dalam format JSON untuk DataTables
     public function list(Request $request)
     {
-        // Get data from the Level model
         $levels = LevelModel::select('level_id', 'level_kode', 'level_nama');
-
-        // Filter data based on level_id if provided in the request
+    
         if ($request->level_id) {
             $levels->where('level_id', $request->level_id);
         }
-
+    
         return DataTables::of($levels)
-            ->addIndexColumn() // Adds an index column (DT_RowIndex)
-            ->addColumn('aksi', function ($level) { // Adds an action column
-                // Generate action buttons for detail, edit, and delete
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($level) {
+                // Tombol Detail dan Edit tetap sama
                 $btn = '<button onclick="modalAction(\''.url('/level/' . $level->level_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
                 $btn .= '<button onclick="modalAction(\''.url('/level/' . $level->level_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
-                $btn .= '<button onclick="modalAction(\''.url('/level/' . $level->level_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
+    
+                // --- PERBAIKAN TOMBOL HAPUS ---
+                // Tombol hapus dibungkus dalam form untuk keamanan
+                $btn .= '<form class="d-inline-block" method="POST" action="'. url('/level/'.$level->level_id) .'">';
+                $btn .= csrf_field(); // Menambahkan CSRF token
+                $btn .= method_field('DELETE'); // Menggunakan metode DELETE
+                $btn .= '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button>';
+                $btn .= '</form>';
+                
                 return $btn;
             })
-            ->rawColumns(['aksi']) // Informs DataTables that the 'aksi' column contains HTML
+            ->rawColumns(['aksi'])
             ->make(true);
     }
 

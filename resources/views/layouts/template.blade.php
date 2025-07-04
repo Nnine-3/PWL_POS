@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'PWL Starter Code') }} | PM Laravel Starter Code</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,6 +20,14 @@
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+  <script>
+    // Setup AJAX untuk mengirim CSRF token secara otomatis
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 
   @stack('css') </head>
 

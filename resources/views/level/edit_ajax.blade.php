@@ -19,7 +19,7 @@
         </div>
     </div>
 @else
-    <form action="{{ url('/level/' . $level->level_id) }}" method="POST" id="form-edit">
+    <form action="{{ url('/edit_ajax' . $level->level_id) }}" method="POST" id="form-edit">
         @csrf
         @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
