@@ -105,6 +105,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/barang/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);
         Route::delete('/barang/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);
         Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
+        Route::get('/barang/import', [BarangController::class, 'import']);
+        Route::post('/barang/import_ajax', [BarangController::class, 'import_ajax']);
+        Route::get('/barang/import', [BarangController::class, 'import']); // ajax form upload excel
+        Route::post('/barang/import_ajax', [BarangController::class, 'import_ajax']); // ajax import excel
+        Route::get('/barang/export_excel', [BarangController::class, 'export_excel']); // export excel
+        Route::get('/barang/export_pdf', [BarangController::class, 'export_pdf']); // export pdf
+
     });
 });
 
